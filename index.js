@@ -1,12 +1,14 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const shapeType = require('./lib/shapes.js');
+const {Circle, Square, Triangle} = require('./lib/shapes.js');
 const logoPrompt = require('./lib/questions.js');
 
-const generateLogo = (logoFile) => {
-    fs.writeFile('logo.svg', logoFile, (err) =>
+function generateLogo (logoFile, content) {
+    console.log("Generating your logo...");
+    fs.writeFile(logoFile, content, (err) => {
         err ? console.error(err) : console.log("Success! Your logo has been created!"),
         console.log(`Logo was saved to ${logoFile}`)
+    }
     )
 }
 
@@ -14,7 +16,20 @@ const startInquirer = () => {
     inquirer
         .prompt(logoPrompt)
         .then((answers) => {
-            generateLogo(shapeType(answers));
+            let choice;
+            switch (answers.shapeType) {
+                case "Square":
+                    choice = new Square(answers.question, answers.textColor, answers.shapeColor, answers.shapeType).render();
+                    break; 
+                case "Circle":
+                    choice =  new Circle(answers.question, answers.textColor, answers.shapeColor, answers.shapeType).render();
+                    break;
+                case "Triangle":
+                    choice = new Triangle(answers.question, answers.textColor, answers.shapeColor, answers.shapeType).render();
+                    break;
+            }
+
+            generateLogo("Logo.svg", choice);
         })
         .catch(err => {
             console.log(err);
