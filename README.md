@@ -24,6 +24,8 @@ Use following prompts on designated terminal to use the application properly.
 
 ![screenshot](examples/Challenge_10-Logo-Generator.jpg)
 
+[Walkthrough Video](https://youtu.be/JQQhSFvY-4w)
+
 Online References: 
 https://www.svgviewer.dev/
 https://www.tutorialscampus.com/html5/svg-draw-rectangle-with-text.htm
